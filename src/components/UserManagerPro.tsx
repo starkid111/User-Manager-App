@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {type User, addUser, deleteUser, getUsers, updateUser } from "../utils/api";
 
 import UserCard from "./UserCard";
-import UserModal from "./UserModal";
+import UserModal from "./Modal";
 
 const UserManagerPro: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);

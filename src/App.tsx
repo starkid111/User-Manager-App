@@ -1,9 +1,8 @@
-import UserManagerPro from "./components/UserManagerPro"
-
+import GadgetList from "./components/GadgetList"
 const App = () => {
   return (
     <div>
-      <UserManagerPro />
+      <GadgetList />
     </div>
   )
 }
