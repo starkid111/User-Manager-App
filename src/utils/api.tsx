@@ -1,6 +1,6 @@
 import axios from "axios";
 export interface User {
-    id?: number;
+    id: number;
     name: string;
     username: string;
     email: string;
@@ -16,7 +16,7 @@ const api = axios.create({
 })
 
 
-export const fetchUsers = async (params? : any ) : Promise<User[]> => {
+export const getUsers = async (params? : any ) : Promise<User[]> => {
     try {
         const response = await api.get("/objects", {params});
         return response.data;
@@ -28,7 +28,7 @@ export const fetchUsers = async (params? : any ) : Promise<User[]> => {
 } 
 
 
-export const  addUsers = async (user : User) : Promise<User> => {
+export const  addUser = async (user : Partial<User>) : Promise<User> => {
     try {
         const response = await api.post("/objects", user)
         return response.data;
@@ -53,3 +53,12 @@ export const deleteUser = async (id: number | string): Promise<void> => {
 };
 
 
+export const updateUser = async (id: number | string, user: Partial<User>): Promise<User> => {
+  try {
+    const response = await api.put(`/objects/${id}`, user);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error;
+  }
+}
