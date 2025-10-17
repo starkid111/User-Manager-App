@@ -1,0 +1,44 @@
+{
+  "gadgets": [
+    {
+      "name": "iphone 14 pro max ",
+      "data": {
+        "color": "blue black red",
+        "capacity": "1tb"
+      },
+      "id": "1142"
+    },
+    {
+      "id": "a9e5",
+      "name": "fdfjkdfkdfkdfkdf",
+      "data": {
+        "color": "efefjddfksdfk",
+        "capacity": "128gb"
+      }
+    },
+    {
+      "id": "0b56",
+      "name": "iphone 15",
+      "data": {
+        "color": "white ",
+        "capacity": "64gb"
+      }
+    },
+    {
+      "id": "7520",
+      "name": "macbook pro ",
+      "data": {
+        "color": "silver ",
+        "capacity": "1tb"
+      }
+    },
+    {
+      "id": "e367",
+      "name": "apple watch ",
+      "data": {
+        "color": "black",
+        "capacity": ""
+      }
+    }
+  ]
+}
