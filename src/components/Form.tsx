@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 import type { Gadget } from "../utils/api";
 
@@ -11,12 +11,14 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [capacity, setCapacity] = useState("");
+  const [image , setImage] = useState("");
 
   useEffect(() => {
     if (editingGadget) {
       setName(editingGadget.name || "");
       setColor(editingGadget.data?.color || "");
       setCapacity(editingGadget.data?.capacity || "");
+      setImage(editingGadget.image || "");
     } else {
       setName("");
       setColor("");
@@ -30,6 +32,7 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
     setName("");
     setColor("");
     setCapacity("");
+    setImage("");
   };
 
   return (
@@ -54,6 +57,13 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
         placeholder="Capacity"
         value={capacity}
         onChange={(e) => setCapacity(e.target.value)}
+        className="w-full bg-white/10 border border-white/20 text-white placeholder-gray-400 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+       <input
+        type="text"
+        placeholder="Image URL"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
         className="w-full bg-white/10 border border-white/20 text-white placeholder-gray-400 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
       <button

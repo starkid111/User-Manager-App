@@ -60,18 +60,17 @@ const GadgetList = () => {
     gadget.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-const sortedGadgets = [...filteredGadgets].sort((a, b) => {
-  if (sortBy === "name") return a.name.localeCompare(b.name);
-  if (sortBy === "reverse") return b.name.localeCompare(a.name);
-  if (sortBy === "capacity")
-    return (a.data?.capacity || "").localeCompare(b.data?.capacity || "");
-  return 0;
-});
+  const sortedGadgets = [...filteredGadgets].sort((a, b) => {
+    if (sortBy === "name") return a.name.localeCompare(b.name);
+    if (sortBy === "reverse") return b.name.localeCompare(a.name);
+    if (sortBy === "capacity")
+      return (a.data?.capacity || "").localeCompare(b.data?.capacity || "");
+    return 0;
+  });
 
-const filteredByColor = sortedGadgets.filter((gadget) =>
-  colorFilter ? gadget.data?.color?.toLowerCase().includes(colorFilter) : true
-);
-
+  const filteredByColor = sortedGadgets.filter((gadget) =>
+    colorFilter ? gadget.data?.color?.toLowerCase().includes(colorFilter) : true
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-6">
@@ -97,14 +96,14 @@ const filteredByColor = sortedGadgets.filter((gadget) =>
             <option value="capacity">Capacity</option>
           </select>
           <select
-  onChange={(e) => setColorFilter(e.target.value)}
-  className="bg-white/10 border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
->
-  <option value="">All Colors</option>
-  <option value="black">Black</option>
-  <option value="blue">Blue</option>
-  <option value="red">Red</option>
-</select>
+            onChange={(e) => setColorFilter(e.target.value)}
+            className="bg-white/10 border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            <option value="">All Colors</option>
+            <option value="black">Black</option>
+            <option value="blue">Blue</option>
+            <option value="red">Red</option>
+          </select>
 
           <button
             onClick={() => {
@@ -129,6 +128,13 @@ const filteredByColor = sortedGadgets.filter((gadget) =>
               key={gadget.id}
               className="bg-white/10 border border-white/10 rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 shadow-lg"
             >
+              {gadget.image && (
+                <img
+                  src={gadget.image}
+                  alt={gadget.name}
+                  className="w-full h-40 object-cover rounded-xl mb-3"
+                />
+              )}
               <h2 className="text-xl font-semibold mb-2 text-indigo-300">
                 {gadget.name || "Unnamed Gadget"}
               </h2>

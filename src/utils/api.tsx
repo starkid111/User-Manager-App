@@ -7,6 +7,7 @@ export interface Gadget {
     color?: string;
     capacity?: string;
   };
+  image?: string;
 }
 
 const api = axios.create({
