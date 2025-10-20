@@ -1,22 +1,22 @@
 {
   "gadgets": [
     {
-        "id": "1142",
+      "id": "1142",
       "name": "iphone 14 pro max ",
       "data": {
         "color": "blue black red",
         "capacity": "1tb"
       },
-      "image" : "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
+      "image": "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
     },
     {
-      "id": "a9e5",
-      "name": "fdfjkdfkdfkdfkdf",
+      "name": "phone ",
+      "image": "https://images.unsplash.com/photo-1592919933511-ea9d487c85e4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2574",
       "data": {
         "color": "efefjddfksdfk",
         "capacity": "128gb"
       },
-       "image" : "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
+      "id": "a9e5"
     },
     {
       "id": "0b56",
@@ -25,16 +25,7 @@
         "color": "white ",
         "capacity": "64gb"
       },
-       "image" : "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
-    },
-    {
-      "id": "7520",
-      "name": "macbook pro ",
-      "data": {
-        "color": "silver ",
-        "capacity": "1tb"
-      },
-       "image" : "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
+      "image": "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
     },
     {
       "id": "e367",
@@ -43,7 +34,7 @@
         "color": "black",
         "capacity": ""
       },
-       "image" : "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
+      "image": "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
     },
     {
       "id": "5f24",
@@ -52,7 +43,7 @@
         "color": "black",
         "capacity": "1TB"
       },
-       "image" : "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
+      "image": "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
     },
     {
       "id": "60cb",
@@ -61,6 +52,115 @@
         "color": "blue ",
         "capacity": "256gb"
       },
-      "image" : "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"}
+      "image": "https://images.unsplash.com/photo-1680687688158-e9165395ff00?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900"
+    },
+    {
+      "id": "05bf",
+      "name": "Macbook pro m4",
+      "data": {
+        "color": "blue",
+        "capacity": "1tb"
+      },
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2226"
+    },
+    {
+      "id": "e839",
+      "name": "Apple Watch",
+      "image": "https://images.unsplash.com/photo-1558126319-c9feecbf57ee?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3264",
+      "data": {
+        "color": "black",
+        "capacity": ""
+      }
+    },
+    {
+      "name": "no name",
+      "image": "https://images.unsplash.com/photo-1558126319-c9feecbf57ee?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3264",
+      "data": {
+        "color": "",
+        "capacity": ""
+      },
+      "id": "dd98"
+    },
+    {
+      "name": "NEW ",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80",
+      "data": {
+        "color": "",
+        "capacity": ""
+      },
+      "id": "8a69"
+    },
+    {
+      "id": "0dd1",
+      "name": "gooooddddddd",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "9113",
+      "name": "latest",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1760965686/hhdky9jrngnp2pydpb6v.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "f501",
+      "name": "latest",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1760965692/v5jrndnpbi5qmo5kzyg1.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "f5c5",
+      "name": "latest",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1760965708/o04ky19b536hoeqbxawn.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "311e",
+      "name": "latest",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1760965711/c0sgw9hnsvx0vfcuq0v8.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "f2c3",
+      "name": "latest",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1760965716/blf9drvwr598nbysdvny.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "ca82",
+      "name": "no name",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "af8a",
+      "name": "stark",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1760965804/rkuasceuvmqbehkdf1wx.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    }
   ]
 }

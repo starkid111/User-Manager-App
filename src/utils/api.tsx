@@ -58,3 +58,23 @@ export const updatedGadget = async (
     throw error;
   }
 };
+
+
+export const uploadImageToCloudinary = async (file: File): Promise<string> => {
+    const CLOUD_NAME = "dleley1gv"; // Replace with your Cloudinary cloud name
+    const UPLOAD_PRESET = "unsigned_preset"; // Replace with your Cloudinary upload preset
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", UPLOAD_PRESET); // Replace with your Cloudinary upload preset
+
+  try {
+    const response = await axios.post(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, // Replace with your Cloudinary cloud name
+      formData
+    );
+    return response.data.secure_url;
+  } catch (error) {
+    console.error("Error uploading image to Cloudinary:", error);
+    throw error;
+  }
+}

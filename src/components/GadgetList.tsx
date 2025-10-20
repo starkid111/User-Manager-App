@@ -72,6 +72,10 @@ const GadgetList = () => {
     colorFilter ? gadget.data?.color?.toLowerCase().includes(colorFilter) : true
   );
 
+  const DEFAULT_IMAGE =
+  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80";
+
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-6">
       <div className="flex justify-between items-center mb-8">
@@ -130,7 +134,7 @@ const GadgetList = () => {
             >
               {gadget.image && (
                 <img
-                  src={gadget.image}
+                  src={gadget.image || DEFAULT_IMAGE}
                   alt={gadget.name}
                   className="w-full h-40 object-cover rounded-xl mb-3"
                 />
