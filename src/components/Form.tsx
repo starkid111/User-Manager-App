@@ -10,11 +10,11 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [capacity, setCapacity] = useState("");
-  const [image, setImage] = useState(""); // holds final image URL
-  const [preview, setPreview] = useState(""); // holds preview (Base64 or URL)
-  const fileRef = useRef<HTMLInputElement>(null); // reference to file input
+  const [image, setImage] = useState(""); 
+  const [preview, setPreview] = useState(""); 
+  const fileRef = useRef<HTMLInputElement>(null); 
 
-  // Load gadget info if editing
+  
   useEffect(() => {
     if (editingGadget) {
       setName(editingGadget.name || "");
@@ -65,16 +65,16 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
         "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80";
     }
 
-    // Submit gadget data
+    
     onSubmit({ name, image: finalImage, data: { color, capacity } });
 
-    // Reset form
+
     setName("");
     setColor("");
     setCapacity("");
     setImage("");
     setPreview("");
-    if (fileRef.current) fileRef.current.value = ""; // clear file input
+    if (fileRef.current) fileRef.current.value = ""; 
   };
 
   return (
