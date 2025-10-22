@@ -161,6 +161,33 @@
         "color": "",
         "capacity": ""
       }
+    },
+    {
+      "id": "d98a",
+      "name": "magic keyboard ",
+      "image": "https://images.unsplash.com/photo-1608377205627-ae97b46989f4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2670",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "5f3b",
+      "name": "newwwwwwwwwwwwwwwwww",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
+    },
+    {
+      "id": "5b74",
+      "name": "aminat",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1761122664/oj6yk230k84zerldmpnr.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
     }
   ]
 }

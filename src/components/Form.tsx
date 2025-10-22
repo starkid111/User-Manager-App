@@ -13,6 +13,7 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
   const [image, setImage] = useState(""); 
   const [preview, setPreview] = useState(""); 
   const fileRef = useRef<HTMLInputElement>(null); 
+  const [uploading , setUploading] = useState(false);
 
   
   useEffect(() => {
@@ -37,11 +38,14 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
     if (!file) return;
 
     setPreview(URL.createObjectURL(file)); // show preview immediately
+    setUploading(true);
     try {
       const uploadedUrl = await uploadImageToCloudinary(file);
       setImage(uploadedUrl); // save Cloudinary URL
     } catch (err) {
       console.error("Upload failed:", err);
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -123,6 +127,12 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
           className="text-sm text-gray-300 bg-black cursor-pointer"
         />
 
+         {uploading && (
+          <p className="text-indigo-400 text-sm animate-pulse">
+            ⏳ Uploading image...
+          </p>
+        )}
+
         {preview && (
           <img
             src={preview}
@@ -136,7 +146,11 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
         type="submit"
         className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 hover:opacity-90 py-2 rounded-lg font-semibold transition"
       >
-        {editingGadget ? "Update Gadget" : "Add Gadget"}
+        {uploading
+          ? "Uploading..."
+          : editingGadget
+          ? "Update Gadget"
+          : "Add Gadget"}
       </button>
     </form>
   );
