@@ -188,6 +188,15 @@
         "color": "",
         "capacity": ""
       }
+    },
+    {
+      "id": "750b",
+      "name": "aminatu",
+      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1761133437/cbqtqj7txcyaqzrqmgx4.svg",
+      "data": {
+        "color": "",
+        "capacity": ""
+      }
     }
   ]
 }

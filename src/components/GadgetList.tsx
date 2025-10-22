@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import {
   getGadgets,
   addGadget,
@@ -17,10 +17,16 @@ const GadgetList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("name");
   const [colorFilter, setColorFilter] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 6;
 
   useEffect(() => {
     loadGadgets();
   }, []);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, sortBy, colorFilter]);
 
   const loadGadgets = async () => {
     setLoading(true);
@@ -72,9 +78,19 @@ const GadgetList = () => {
     colorFilter ? gadget.data?.color?.toLowerCase().includes(colorFilter) : true
   );
 
-  const DEFAULT_IMAGE =
-  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80";
+  const totalItems = filteredByColor.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentGadgets = filteredByColor.slice(startIndex, endIndex);
 
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
+
+  const DEFAULT_IMAGE =
+    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-6">
@@ -126,52 +142,98 @@ const GadgetList = () => {
           Loading gadgets...
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredByColor.map((gadget) => (
-            <div
-              key={gadget.id}
-              className="bg-white/10 border border-white/10 rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 shadow-lg"
-            >
-              {gadget.image && (
-                <img
-                  src={gadget.image || DEFAULT_IMAGE}
-                  alt={gadget.name}
-                  className="w-full h-40 object-cover rounded-xl mb-3"
-                />
-              )}
-              <h2 className="text-xl font-semibold mb-2 text-indigo-300">
-                {gadget.name || "Unnamed Gadget"}
-              </h2>
-              <p className="text-xs text-gray-400 mb-2">ID: {gadget.id}</p>
-              {gadget.data && (
-                <div className="text-sm text-gray-300 space-y-1">
-                  {Object.entries(gadget.data).map(([key, value]) => (
-                    <p key={key}>
-                      <span className="capitalize">{key}</span>: {value}
-                    </p>
-                  ))}
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {currentGadgets.map((gadget) => (
+              <div
+                key={gadget.id}
+                className="bg-white/10 border border-white/10 rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 shadow-lg"
+              >
+                {gadget.image && (
+                  <img
+                    src={gadget.image || DEFAULT_IMAGE}
+                    alt={gadget.name}
+                    className="w-full h-40 object-cover rounded-xl mb-3"
+                  />
+                )}
+                <h2 className="text-xl font-semibold mb-2 text-indigo-300">
+                  {gadget.name || "Unnamed Gadget"}
+                </h2>
+                <p className="text-xs text-gray-400 mb-2">ID: {gadget.id}</p>
+                {gadget.data && (
+                  <div className="text-sm text-gray-300 space-y-1">
+                    {Object.entries(gadget.data).map(([key, value]) => (
+                      <p key={key}>
+                        <span className="capitalize">{key}</span>: {value}
+                      </p>
+                    ))}
+                  </div>
+                )}
+                <div className="flex justify-between mt-4">
+                  <button
+                    onClick={() => {
+                      setEditingGadget(gadget);
+                      setIsModalOpen(true);
+                    }}
+                    className="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1 rounded-lg font-medium"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(gadget.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg font-medium"
+                  >
+                    Delete
+                  </button>
                 </div>
-              )}
-              <div className="flex justify-between mt-4">
-                <button
-                  onClick={() => {
-                    setEditingGadget(gadget);
-                    setIsModalOpen(true);
-                  }}
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1 rounded-lg font-medium"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(gadget.id)}
-                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg font-medium"
-                >
-                  Delete
-                </button>
               </div>
+            ))}
+          </div>
+          {/* Pagination controls */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-indigo-600 rounded-lg disabled:opacity-40"
+              >
+                Prev
+              </button>
+
+              {/* page numbers */}
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (p) => (
+                    <button
+                      key={p}
+                      onClick={() => goToPage(p)}
+                      className={`px-3 py-1 rounded ${
+                        p === currentPage
+                          ? "bg-white text-black font-semibold"
+                          : "bg-white/10 text-white"
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  )
+                )}
+              </div>
+
+              <button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 bg-indigo-600 rounded-lg disabled:opacity-40"
+              >
+                Next
+              </button>
             </div>
-          ))}
-        </div>
+
+            <div className="text-sm text-gray-400">
+              Showing {Math.min(totalItems, startIndex + 1)} -{" "}
+              {Math.min(totalItems, endIndex)} of {totalItems}
+            </div>
+          </div>
+        </>
       )}
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
