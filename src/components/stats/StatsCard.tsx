@@ -3,7 +3,7 @@ import React from "react";
 interface Props {
   title: string;
   value: string | number;
-  accent?: string; // Tailwind color class e.g. "text-indigo-400"
+  accent?: string; 
 }
 
 const StatsCard: React.FC<Props> = ({ title, value, accent = "text-indigo-400" }) => {
