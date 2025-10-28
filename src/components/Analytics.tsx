@@ -4,6 +4,7 @@ import ColorPieChart from "./charts/PieChart";
 import { getGadgets, type Gadget } from "../utils/api";
 import StatsCard from "./stats/StatsCard"
 import CapacityBarChart from "./charts/CapacityBarChart";
+import SkeletonCard from "./ui/SkeletonCard";
 
 
 const Analytics = () => {
@@ -89,6 +90,10 @@ const Analytics = () => {
             </div>
           </>
         )}
+      </div>
+      <div className="w-full bg-red-500  ">
+      <SkeletonCard />
+      <SkeletonCard />  
       </div>
     </>
   
