@@ -55,15 +55,6 @@
       "id": "8a69"
     },
     {
-      "id": "9113",
-      "name": "latest",
-      "image": "https://res.cloudinary.com/dleley1gv/image/upload/v1760965686/hhdky9jrngnp2pydpb6v.svg",
-      "data": {
-        "color": "",
-        "capacity": ""
-      }
-    },
-    {
       "id": "ca82",
       "name": "no name",
       "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80",
@@ -73,13 +64,13 @@
       }
     },
     {
-      "id": "d98a",
       "name": "magic keyboard ",
       "image": "https://images.unsplash.com/photo-1608377205627-ae97b46989f4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2670",
       "data": {
         "color": "",
         "capacity": ""
-      }
+      },
+      "id": "d98a"
     },
     {
       "id": "5f3b",

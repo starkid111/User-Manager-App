@@ -11,7 +11,7 @@ export interface Gadget {
 }
 
 const api = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL: "https://gadget-app-api.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },

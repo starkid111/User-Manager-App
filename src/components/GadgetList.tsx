@@ -8,12 +8,17 @@ import {
 } from "../utils/api";
 import Modal from "./Modal";
 import Form from "./Form";
+import Spinner from "./ui/Spinner";
+import ErrorBanner from "./ui/ErrorBanner";
+import SkeletonCard from "./ui/SkeletonCard";
 
 const GadgetList = () => {
   const [gadgets, setGadgets] = useState<Gadget[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingGadget, setEditingGadget] = useState<Gadget | null>(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
   // Controls
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,12 +47,14 @@ const GadgetList = () => {
       setGadgets(data);
     } catch (err) {
       console.error("Failed fetching gadgets", err);
+        setError("Failed to load gadgets. Check your server or network.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleCreate = async (data: Partial<Gadget>) => {
+    setIsProcessing(true)
     try {
       const newGadget = await addGadget(data);
       setGadgets((prev) => [...prev, newGadget]);
@@ -56,11 +63,14 @@ const GadgetList = () => {
     } catch (err) {
       console.error("Error adding gadget", err);
       alert("Failed to add gadget");
+    } finally {
+      setIsProcessing(false)
     }
   };
 
   const handleUpdate = async (data: Partial<Gadget>) => {
     if (!editingGadget?.id) return;
+    setIsProcessing(true)
     try {
       const updated = await updatedGadget(editingGadget.id, data);
       setGadgets((prev) =>
@@ -72,16 +82,21 @@ const GadgetList = () => {
     } finally {
       setIsModalOpen(false);
       setEditingGadget(null);
+      setIsProcessing(false)
     }
   };
 
   const handleDelete = async (id: string) => {
+    if(!confirm("Delete this gadget? this action can't be undone ")) return;
+    setIsProcessing(true)
     try {
       await deleteGadget(id);
       setGadgets((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       console.error("Error deleting gadget:", err);
       alert("Failed to delete gadget");
+    }finally {
+      setIsProcessing(false)
     }
   };
 
@@ -99,7 +114,7 @@ const GadgetList = () => {
   });
 
   const filteredByColor = sortedGadgets.filter((gadget) =>
-    colorFilter ? gadget.data?.color?.toLowerCase().includes(colorFilter) : true
+    !colorFilter || gadget.data?.color?.toLowerCase().includes(colorFilter.toLowerCase())
   );
 
   // pagination calculations
@@ -182,9 +197,10 @@ const GadgetList = () => {
                 setEditingGadget(null);
                 setIsModalOpen(true);
               }}
+              disabled={isProcessing}
               className="bg-gradient-to-r from-indigo-600 to-purple-700 hover:opacity-95 px-4 py-2 rounded-xl font-semibold shadow-sm text-sm"
             >
-              + Add Gadget
+             {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
             </button>
           </div>
         </div>
@@ -227,9 +243,10 @@ const GadgetList = () => {
                 setIsModalOpen(true);
                 setShowFilters(false);
               }}
+              disabled={isProcessing}
               className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-700 px-4 py-2 rounded-xl font-semibold text-sm"
             >
-              + Add Gadget
+             {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
             </button>
             <button
               onClick={() => {
@@ -245,12 +262,20 @@ const GadgetList = () => {
           </div>
         </div>
       )}
-
+     
+      {error && (
+        <div className="mb-4">
+          <ErrorBanner message={error} onRetry={loadGadgets} />
+        </div>
+      )}
+  
       {/* Main content: cards */}
-      {loading ? (
-        <p className="text-center mt-10 text-gray-400 animate-pulse">
-          Loading gadgets...
-        </p>
+       {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
       ) : (
         <>
           {/* Grid: 1 col mobile, 2 sm, 3 md+, 4 xl */}
@@ -298,15 +323,17 @@ const GadgetList = () => {
                         setEditingGadget(gadget);
                         setIsModalOpen(true);
                       }}
+                      disabled={isProcessing}
                       className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-2 rounded-lg text-sm font-medium"
                     >
-                      Edit
+                      {isProcessing ? <Spinner size={14} /> : "Edit"}
                     </button>
                     <button
                       onClick={() => handleDelete(gadget.id)}
+                      disabled={isProcessing}
                       className="flex-1 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium"
                     >
-                      Delete
+                      {isProcessing ? <Spinner size={14} /> : "Delete" }
                     </button>
                   </div>
                 </article>
