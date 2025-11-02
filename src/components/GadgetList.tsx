@@ -18,7 +18,7 @@ const GadgetList = () => {
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingGadget, setEditingGadget] = useState<Gadget | null>(null);
-    const [isProcessing, setIsProcessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // Controls
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,14 +47,14 @@ const GadgetList = () => {
       setGadgets(data);
     } catch (err) {
       console.error("Failed fetching gadgets", err);
-        setError("Failed to load gadgets. Check your server or network.");
+      setError("Failed to load gadgets. Check your server or network.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleCreate = async (data: Partial<Gadget>) => {
-    setIsProcessing(true)
+    setIsProcessing(true);
     try {
       const newGadget = await addGadget(data);
       setGadgets((prev) => [...prev, newGadget]);
@@ -64,13 +64,13 @@ const GadgetList = () => {
       console.error("Error adding gadget", err);
       alert("Failed to add gadget");
     } finally {
-      setIsProcessing(false)
+      setIsProcessing(false);
     }
   };
 
   const handleUpdate = async (data: Partial<Gadget>) => {
     if (!editingGadget?.id) return;
-    setIsProcessing(true)
+    setIsProcessing(true);
     try {
       const updated = await updatedGadget(editingGadget.id, data);
       setGadgets((prev) =>
@@ -82,21 +82,21 @@ const GadgetList = () => {
     } finally {
       setIsModalOpen(false);
       setEditingGadget(null);
-      setIsProcessing(false)
+      setIsProcessing(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if(!confirm("Delete this gadget? this action can't be undone ")) return;
-    setIsProcessing(true)
+    if (!confirm("Delete this gadget? this action can't be undone ")) return;
+    setIsProcessing(true);
     try {
       await deleteGadget(id);
       setGadgets((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       console.error("Error deleting gadget:", err);
       alert("Failed to delete gadget");
-    }finally {
-      setIsProcessing(false)
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -113,8 +113,10 @@ const GadgetList = () => {
     return 0;
   });
 
-  const filteredByColor = sortedGadgets.filter((gadget) =>
-    !colorFilter || gadget.data?.color?.toLowerCase().includes(colorFilter.toLowerCase())
+  const filteredByColor = sortedGadgets.filter(
+    (gadget) =>
+      !colorFilter ||
+      gadget.data?.color?.toLowerCase().includes(colorFilter.toLowerCase())
   );
 
   // pagination calculations
@@ -200,7 +202,7 @@ const GadgetList = () => {
               disabled={isProcessing}
               className="bg-gradient-to-r from-indigo-600 to-purple-700 hover:opacity-95 px-4 py-2 rounded-xl font-semibold shadow-sm text-sm"
             >
-             {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
+              {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
             </button>
           </div>
         </div>
@@ -246,7 +248,7 @@ const GadgetList = () => {
               disabled={isProcessing}
               className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-700 px-4 py-2 rounded-xl font-semibold text-sm"
             >
-             {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
+              {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
             </button>
             <button
               onClick={() => {
@@ -262,16 +264,16 @@ const GadgetList = () => {
           </div>
         </div>
       )}
-     
+
       {error && (
         <div className="mb-4">
           <ErrorBanner message={error} onRetry={loadGadgets} />
         </div>
       )}
-  
+
       {/* Main content: cards */}
-       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6">
           {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
             <SkeletonCard key={i} />
           ))}
@@ -279,7 +281,7 @@ const GadgetList = () => {
       ) : (
         <>
           {/* Grid: 1 col mobile, 2 sm, 3 md+, 4 xl */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
             {currentGadgets.length === 0 ? (
               <div className="col-span-full text-center text-gray-400 py-12">
                 No gadgets found.
@@ -303,14 +305,21 @@ const GadgetList = () => {
                     <h3 className="text-lg font-semibold text-indigo-300 line-clamp-2">
                       {gadget.name || "Unnamed Gadget"}
                     </h3>
-                    <p className="text-xs text-gray-400 mt-1 mb-2">ID: {gadget.id}</p>
+                    <p className="text-xs text-gray-400 mt-1 mb-2">
+                      ID: {gadget.id}
+                    </p>
 
                     {gadget.data && (
                       <ul className="text-sm text-gray-300 space-y-1 mb-3">
                         {Object.entries(gadget.data).map(([key, value]) => (
                           <li key={key} className="capitalize">
-                            <span className="font-medium text-gray-200">{key}:</span>{" "}
-                            <span className="text-gray-300"> {String(value)}</span>
+                            <span className="font-medium text-gray-200">
+                              {key}:
+                            </span>{" "}
+                            <span className="text-gray-300">
+                              {" "}
+                              {String(value)}
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -333,7 +342,7 @@ const GadgetList = () => {
                       disabled={isProcessing}
                       className="flex-1 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium"
                     >
-                      {isProcessing ? <Spinner size={14} /> : "Delete" }
+                      {isProcessing ? <Spinner size={14} /> : "Delete"}
                     </button>
                   </div>
                 </article>
@@ -355,20 +364,22 @@ const GadgetList = () => {
 
                 {/* page numbers (compact on mobile) */}
                 <div className="flex items-center gap-2 flex-wrap">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                    <button
-                      key={p}
-                      onClick={() => goToPage(p)}
-                      aria-current={p === currentPage ? "page" : undefined}
-                      className={`px-2 py-1 rounded-md text-sm ${
-                        p === currentPage
-                          ? "bg-white text-black font-semibold"
-                          : "bg-white/8 text-white"
-                      }`}
-                    >
-                      {p}
-                    </button>
-                  ))}
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (p) => (
+                      <button
+                        key={p}
+                        onClick={() => goToPage(p)}
+                        aria-current={p === currentPage ? "page" : undefined}
+                        className={`px-2 py-1 rounded-md text-sm ${
+                          p === currentPage
+                            ? "bg-white text-black font-semibold"
+                            : "bg-white/8 text-white"
+                        }`}
+                      >
+                        {p}
+                      </button>
+                    )
+                  )}
                 </div>
 
                 <button

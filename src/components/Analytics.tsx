@@ -5,6 +5,7 @@ import { getGadgets, type Gadget } from "../utils/api";
 import StatsCard from "./stats/StatsCard";
 import CapacityBarChart from "./charts/CapacityBarChart";
 import SkeletonCard from "./ui/SkeletonCard";
+import Spinner from "./ui/Spinner";
 
 const Analytics = () => {
   const [gadgets, setGadgets] = useState<Gadget[]>([]);
@@ -54,7 +55,9 @@ const Analytics = () => {
   const uniqueCapacities = Object.keys(capacityCount).length;
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="h-screen w-full flex items-center justify-center">
+      <Spinner size={100} />
+    </div>;
   }
 
   if (error) {

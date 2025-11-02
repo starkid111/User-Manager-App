@@ -1,20 +1,18 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 
-import Analytics from "./components/Analytics"
-import DashboardLayout from "./components/DashboardLayout"
-import GadgetList from "./components/GadgetList"
+import Analytics from "./components/Analytics";
+import DashboardLayout from "./components/DashboardLayout";
+import GadgetList from "./components/GadgetList";
 
 const App = () => {
   return (
-     <Routes>
+    <Routes>
       <Route
         path="/"
         element={
-         
-              <DashboardLayout>
-      <GadgetList />
-    </DashboardLayout>
-        
+          <DashboardLayout>
+            <GadgetList />
+          </DashboardLayout>
         }
       />
       <Route
@@ -23,12 +21,10 @@ const App = () => {
           <DashboardLayout>
             <Analytics />
           </DashboardLayout>
-          
-        
         }
       />
     </Routes>
-  )
-}
+  );
+};
 
-export default App
+export default App;
