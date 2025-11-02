@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -18,13 +19,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <h2 className="text-2xl font-bold text-indigo-400">⚙️ GadgetApp</h2>
         <nav className="flex flex-col space-y-3">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="hover:bg-white/10 px-3 py-2 rounded-lg transition-all"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
       </aside>
@@ -56,14 +57,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
             <nav className="flex flex-col space-y-4 mt-6">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="hover:bg-white/10 px-3 py-2 rounded-lg transition-all"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </motion.div>
