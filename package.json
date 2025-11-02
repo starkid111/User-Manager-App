@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "concurrently \"npm run dev\" \"json-server --watch db.json --port 5001\""
+
   },
   "dependencies": {
     "axios": "^1.12.2",
