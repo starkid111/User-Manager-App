@@ -2,7 +2,7 @@ import type { Gadget } from "../utils/api";
 import Spinner from "./ui/Spinner";
 
 const DEFAULT_IMAGE =
-  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80";
+  "https://via.placeholder.com/300x200?text=No+Image";
 
 
   interface GadgetCardProps {

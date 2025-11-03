@@ -68,8 +68,8 @@ const Analytics = () => {
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">
-              📊 Analytics
+            <h1 className="text-3xl xl:text-4xl font-extrabold">
+              📊 <span className=" bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">Analytics</span> 
             </h1>
             <p className="text-sm text-gray-400 mt-1">
               Overview of your gadgets
