@@ -2,15 +2,16 @@ import type { Gadget } from "../utils/api";
 import Spinner from "./ui/Spinner";
 
 const DEFAULT_IMAGE =
-  "https://plus.unsplash.com/premium_photo-1680371834101-b2ffbf3f7826?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1568";
+  "https://via.placeholder.com/300x200?text=No+Image";
 
-interface GadgetCardProps {
-  gadget: Gadget;
-  onEdit: (gadget: Gadget) => void;
+
+  interface GadgetCardProps {
+    gadget : Gadget
+    onEdit: (gadget: Gadget) => void;
   onDelete: (id: string) => void;
-  onOpenModal: () => void;
+  onOpenModal : () => void;
   isProcessing: boolean;
-}
+  }
 
 const GadgetCard = ({
   gadget,
@@ -18,7 +19,7 @@ const GadgetCard = ({
   onOpenModal,
   isProcessing,
   onDelete,
-}: GadgetCardProps) => {
+} : GadgetCardProps) => {
   return (
     <article
       key={gadget.id}
