@@ -8,9 +8,12 @@ import {
 } from "../utils/api";
 import Modal from "./Modal";
 import Form from "./Form";
-import Spinner from "./ui/Spinner";
 import ErrorBanner from "./ui/ErrorBanner";
 import SkeletonCard from "./ui/SkeletonCard";
+import GadgetCard from "./GadgetCard";
+import Controls from "./Controls";
+import Pagination from "./Pagination";
+import EmptyState from "./EmptyState";
 
 const GadgetList = () => {
   const [gadgets, setGadgets] = useState<Gadget[]>([]);
@@ -132,138 +135,32 @@ const GadgetList = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const DEFAULT_IMAGE =
-    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80";
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-4 sm:p-6">
       {/* Header + controls */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">
-            ⚙️ Gadget Manager
-          </h1>
-          <p className="text-sm text-gray-400 mt-1">
-            Manage your gadgets — search, filter, and sort easily.
-          </p>
-        </div>
-
-        {/* Controls: responsive layout */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
-          {/* Search always visible */}
-          <input
-            aria-label="Search gadgets"
-            type="search"
-            placeholder="Search gadgets..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 min-w-0 bg-white/8 border border-white/10 rounded-xl px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-
-          {/* Mobile: toggle filters */}
-          <button
-            type="button"
-            onClick={() => setShowFilters((s) => !s)}
-            className="sm:hidden bg-white/6 px-3 py-2 rounded-xl text-sm"
-            aria-expanded={showFilters}
-            aria-controls="filter-panel"
-          >
-            {showFilters ? "Hide Filters" : "Show Filters"}
-          </button>
-
-          {/* Desktop filters area (visible on sm+) */}
-          <div className="hidden sm:flex items-center gap-2">
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="bg-white/8 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="name">Name (A–Z)</option>
-              <option value="reverse">Name (Z–A)</option>
-              <option value="capacity">Capacity</option>
-            </select>
-
-            <select
-              value={colorFilter}
-              onChange={(e) => setColorFilter(e.target.value)}
-              className="bg-white/8 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">All Colors</option>
-              <option value="black">Black</option>
-              <option value="blue">Blue</option>
-              <option value="red">Red</option>
-            </select>
-
-            <button
-              onClick={() => {
-                setEditingGadget(null);
-                setIsModalOpen(true);
-              }}
-              disabled={isProcessing}
-              className="bg-gradient-to-r from-indigo-600 to-purple-700 hover:opacity-95 px-4 py-2 rounded-xl font-semibold shadow-sm text-sm"
-            >
-              {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile filter panel (collapsible) */}
-      {showFilters && (
-        <div id="filter-panel" className="mb-4 sm:hidden space-y-3">
-          <div className="flex flex-col gap-2">
-            <label className="text-sm text-gray-300">Sort</label>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="bg-white/8 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="name">Name (A–Z)</option>
-              <option value="reverse">Name (Z–A)</option>
-              <option value="capacity">Capacity</option>
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <label className="text-sm text-gray-300">Color</label>
-            <select
-              value={colorFilter}
-              onChange={(e) => setColorFilter(e.target.value)}
-              className="bg-white/8 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">All Colors</option>
-              <option value="black">Black</option>
-              <option value="blue">Blue</option>
-              <option value="red">Red</option>
-            </select>
-          </div>
-
-          <div className="flex gap-2">
-            <button
-              onClick={() => {
-                setEditingGadget(null);
-                setIsModalOpen(true);
-                setShowFilters(false);
-              }}
-              disabled={isProcessing}
-              className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-700 px-4 py-2 rounded-xl font-semibold text-sm"
-            >
-              {isProcessing ? <Spinner size={14} /> : "+ Add Gadget"}
-            </button>
-            <button
-              onClick={() => {
-                setSearchTerm("");
-                setColorFilter("");
-                setSortBy("name");
-                setShowFilters(false);
-              }}
-              className="flex-1 bg-white/6 px-4 py-2 rounded-xl text-sm"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-      )}
+      <Controls
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        colorFilter={colorFilter}
+        setColorFilter={setColorFilter}
+        onEdit={() => {
+          setEditingGadget(null);
+        }}
+        onModalOpen={() => {
+          setIsModalOpen(true);
+        }}
+        isProcessing={isProcessing}
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+        onResetFilters={() => {
+          setSearchTerm("");
+          setColorFilter("");
+          setSortBy("name");
+          setShowFilters(false);
+        }}
+      />
 
       {error && (
         <div className="mb-4">
@@ -283,120 +180,41 @@ const GadgetList = () => {
           {/* Grid: 1 col mobile, 2 sm, 3 md+, 4 xl */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
             {currentGadgets.length === 0 ? (
-              <div className="col-span-full text-center text-gray-400 py-12">
-                No gadgets found.
-              </div>
+              <EmptyState
+                message="No gadgets found."
+                actionLabel="+ Add Gadget"
+                onAction={() => {
+                  setEditingGadget(null);
+                  setIsModalOpen(true);
+                }}
+              />
             ) : (
               currentGadgets.map((gadget) => (
-                <article
+                <GadgetCard
                   key={gadget.id}
-                  className="bg-white/6 border border-white/8 rounded-2xl p-4 hover:scale-[1.02] transition-all duration-200 shadow-md flex flex-col"
-                >
-                  <div className="w-full h-40 sm:h-44 md:h-36 lg:h-40 overflow-hidden rounded-xl bg-gray-800 mb-3">
-                    <img
-                      src={gadget.image || DEFAULT_IMAGE}
-                      alt={gadget.name || "Gadget image"}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-indigo-300 line-clamp-2">
-                      {gadget.name || "Unnamed Gadget"}
-                    </h3>
-                    <p className="text-xs text-gray-400 mt-1 mb-2">
-                      ID: {gadget.id}
-                    </p>
-
-                    {gadget.data && (
-                      <ul className="text-sm text-gray-300 space-y-1 mb-3">
-                        {Object.entries(gadget.data).map(([key, value]) => (
-                          <li key={key} className="capitalize">
-                            <span className="font-medium text-gray-200">
-                              {key}:
-                            </span>{" "}
-                            <span className="text-gray-300">
-                              {" "}
-                              {String(value)}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-
-                  <div className="mt-3 flex gap-2">
-                    <button
-                      onClick={() => {
-                        setEditingGadget(gadget);
-                        setIsModalOpen(true);
-                      }}
-                      disabled={isProcessing}
-                      className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-2 rounded-lg text-sm font-medium"
-                    >
-                      {isProcessing ? <Spinner size={14} /> : "Edit"}
-                    </button>
-                    <button
-                      onClick={() => handleDelete(gadget.id)}
-                      disabled={isProcessing}
-                      className="flex-1 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium"
-                    >
-                      {isProcessing ? <Spinner size={14} /> : "Delete"}
-                    </button>
-                  </div>
-                </article>
+                  gadget={gadget}
+                  onEdit={(g) => {
+                    setEditingGadget(g);
+                  }}
+                  onOpenModal={() => {
+                    setIsModalOpen(true);
+                  }}
+                  onDelete={handleDelete}
+                  isProcessing={isProcessing}
+                />
               ))
             )}
           </div>
 
           {/* Pagination controls */}
-          <div className="mt-6">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div className="flex items-center gap-2 flex-wrap">
-                <button
-                  onClick={() => goToPage(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className="px-3 py-1 rounded-md bg-indigo-600 disabled:opacity-40 text-sm"
-                >
-                  Prev
-                </button>
-
-                {/* page numbers (compact on mobile) */}
-                <div className="flex items-center gap-2 flex-wrap">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                    (p) => (
-                      <button
-                        key={p}
-                        onClick={() => goToPage(p)}
-                        aria-current={p === currentPage ? "page" : undefined}
-                        className={`px-2 py-1 rounded-md text-sm ${
-                          p === currentPage
-                            ? "bg-white text-black font-semibold"
-                            : "bg-white/8 text-white"
-                        }`}
-                      >
-                        {p}
-                      </button>
-                    )
-                  )}
-                </div>
-
-                <button
-                  onClick={() => goToPage(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className="px-3 py-1 rounded-md bg-indigo-600 disabled:opacity-40 text-sm"
-                >
-                  Next
-                </button>
-              </div>
-
-              <div className="text-sm text-gray-400">
-                Showing {totalItems === 0 ? 0 : startIndex + 1} -{" "}
-                {Math.min(totalItems, endIndex)} of {totalItems}
-              </div>
-            </div>
-          </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalItems={totalItems}
+            startIndex={startIndex}
+            endIndex={endIndex}
+            goToPage={goToPage}
+          />
         </>
       )}
 
