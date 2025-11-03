@@ -13,6 +13,7 @@ import SkeletonCard from "./ui/SkeletonCard";
 import GadgetCard from "./GadgetCard";
 import Controls from "./Controls";
 import Pagination from "./Pagination";
+import EmptyState from "./EmptyState";
 
 const GadgetList = () => {
   const [gadgets, setGadgets] = useState<Gadget[]>([]);
@@ -179,9 +180,14 @@ const GadgetList = () => {
           {/* Grid: 1 col mobile, 2 sm, 3 md+, 4 xl */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
             {currentGadgets.length === 0 ? (
-              <div className="col-span-full text-center text-gray-400 py-12">
-                No gadgets found.
-              </div>
+              <EmptyState
+                message="No gadgets found."
+                actionLabel="+ Add Gadget"
+                onAction={() => {
+                  setEditingGadget(null);
+                  setIsModalOpen(true);
+                }}
+              />
             ) : (
               currentGadgets.map((gadget) => (
                 <GadgetCard
