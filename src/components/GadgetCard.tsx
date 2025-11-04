@@ -2,7 +2,7 @@ import type { Gadget } from "../utils/api";
 import Spinner from "./ui/Spinner";
 
 const DEFAULT_IMAGE =
-  "https://via.placeholder.com/300x200?text=No+Image";
+  "";
 
 
   interface GadgetCardProps {
