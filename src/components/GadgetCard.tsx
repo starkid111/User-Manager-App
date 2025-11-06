@@ -2,7 +2,7 @@ import type { Gadget } from "../utils/api";
 import Spinner from "./ui/Spinner";
 
 const DEFAULT_IMAGE =
-  "";
+  "https://media.istockphoto.com/id/1075374570/vector/coming-soon.jpg?s=2048x2048&w=is&k=20&c=hcGkMTNFcOZXqXz8Csaz9tnRwVS9ImSucib8hyJG6aM=";
 
 
   interface GadgetCardProps {
