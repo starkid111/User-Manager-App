@@ -1,11 +1,7 @@
 import type { Gadget } from "../utils/api";
 import Spinner from "./ui/Spinner";
 
-const DEFAULT_IMAGE =
-  "https://media.istockphoto.com/id/1075374570/vector/coming-soon.jpg?s=2048x2048&w=is&k=20&c=hcGkMTNFcOZXqXz8Csaz9tnRwVS9ImSucib8hyJG6aM=";
-
-
-  interface GadgetCardProps {
+interface GadgetCardProps {
     gadget : Gadget
     onEdit: (gadget: Gadget) => void;
   onDelete: (id: string) => void;
@@ -27,7 +23,7 @@ const GadgetCard = ({
     >
       <div className="w-full h-40 sm:h-44 md:h-36 lg:h-40 overflow-hidden rounded-xl bg-gray-800 mb-3">
         <img
-          src={gadget.image || DEFAULT_IMAGE}
+          src={gadget.image }
           alt={gadget.name || "Gadget image"}
           className="w-full h-full object-cover"
           loading="lazy"
