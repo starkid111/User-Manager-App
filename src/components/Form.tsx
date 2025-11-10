@@ -66,7 +66,7 @@ const Form: React.FC<Props> = ({ onSubmit, editingGadget }) => {
     // Fallback default image
     if (!finalImage) {
       finalImage =
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80";
+        "";
     }
 
     

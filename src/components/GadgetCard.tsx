@@ -2,12 +2,12 @@ import type { Gadget } from "../utils/api";
 import Spinner from "./ui/Spinner";
 
 interface GadgetCardProps {
-    gadget : Gadget
-    onEdit: (gadget: Gadget) => void;
+  gadget: Gadget;
+  onEdit: (gadget: Gadget) => void;
   onDelete: (id: string) => void;
-  onOpenModal : () => void;
+  onOpenModal: () => void;
   isProcessing: boolean;
-  }
+}
 
 const GadgetCard = ({
   gadget,
@@ -15,19 +15,24 @@ const GadgetCard = ({
   onOpenModal,
   isProcessing,
   onDelete,
-} : GadgetCardProps) => {
+}: GadgetCardProps) => {
   return (
     <article
       key={gadget.id}
       className="bg-white/6 border border-white/8 rounded-2xl p-4 hover:scale-[1.02] transition-all duration-200 shadow-md flex flex-col"
     >
       <div className="w-full h-40 sm:h-44 md:h-36 lg:h-40 overflow-hidden rounded-xl bg-gray-800 mb-3">
-        <img
-          src={gadget.image }
-          alt={gadget.name || "Gadget image"}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        {gadget.image ? (
+          <img
+            src={gadget.image}
+            alt={gadget.name}
+            className="w-full h-full object-cover rounded-t-lg"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-600 text-sm rounded-t-lg">
+            No Image
+          </div>
+        )}
       </div>
 
       <div className="flex-1">
