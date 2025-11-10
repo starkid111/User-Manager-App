@@ -102,7 +102,7 @@ export const loginUser = async (email: string, password: string): Promise<User> 
 
 export const registerUser = async (email : string , password : string ): Promise<User> => {
   try {
-    const existing = await api.get("users" , {params: {email , password}})
+    const existing = await api.get("/users" , {params: {email}})
     if (existing.data.length > 0) throw new Error("User already exists");
 
     const response = await api.post("/users" , {email , password})

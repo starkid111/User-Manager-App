@@ -6,8 +6,8 @@ import { loginUser, registerUser, type User } from "../utils/api";
 
 interface AuthContextType {
     user : User  | null;
-   login : (email : string , password : string) => void
-   register: (email: string , password : string) => void 
+   login : (email : string , password : string) => Promise<void>
+   register: (email: string , password : string) => Promise<void>
    logout : () => void 
 }
 
@@ -20,16 +20,26 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     })
 
   const login = async  (email : string , password : string ) => {
-         const loggedUser = await loginUser(email , password);
-         setUser(loggedUser)
-         localStorage.setItem( "user" , JSON.stringify(loggedUser))
+         try {
+      const loggedUser = await loginUser(email, password);
+      setUser(loggedUser);
+      localStorage.setItem("user", JSON.stringify(loggedUser));
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error;
+    }
 
   }
 
   const register = async (email : string , password : string ) => {
-    const newUser = await registerUser(email , password )
-    setUser(newUser)
-    localStorage.setItem("users" , JSON.stringify(newUser))
+    try {
+      const newUser = await registerUser(email, password);
+      setUser(newUser);
+      localStorage.setItem("user", JSON.stringify(newUser)); 
+    } catch (error) {
+      console.error("Registration failed:", error);
+      throw error;
+    }
   }
 
 
