@@ -1,11 +1,8 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { loginUser } from "../utils/api";
+import { loginUser, registerUser, type User } from "../utils/api";
 
 
-interface User {
-    id: number ,
-    email : string
-}
+
 
 interface AuthContextType {
     user : User  | null;
@@ -29,12 +26,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({children}) => {
 
   }
 
-  const register = async (email , password ) => {
-    const newUser = await 
+  const register = async (email : string , password : string ) => {
+    const newUser = await registerUser(email , password )
+    setUser(newUser)
+    localStorage.setItem("users" , JSON.stringify(newUser))
   }
 
+
+  const logout = () => {
+    setUser(null)
+    localStorage.removeItem("user")
+  }
     return (
-       <AuthContext.Provider value={{login , user , }}>
+       <AuthContext.Provider value={{login , user , register , logout }}>
         {children}
        </AuthContext.Provider>
     )
