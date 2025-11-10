@@ -10,6 +10,11 @@ export interface Gadget {
   image?: string;
 }
 
+export interface User {
+  id: number ;
+  email: string;
+}
+
 const api = axios.create({
   baseURL: "https://gadget-app-api.onrender.com",
   headers: {
@@ -77,3 +82,33 @@ export const uploadImageToCloudinary = async (file: File): Promise<string> => {
     throw error;
   }
 };
+
+
+//Authentication 
+
+export const loginUser = async (email: string, password: string): Promise<User> => {
+  try {
+    const response = await api.get("/users", { params: { email, password } });
+    const users = response.data
+     if (users.length === 0) throw new Error("Invalid credentials");
+
+    return users[0];
+
+  } catch (error) {
+    console.error("Error logging in user:", error);
+    throw error;
+  }
+}
+
+export const registerUser = async (email : string , password : string ): Promise<User> => {
+  try {
+    const existing = await api.get("users" , {params: {email , password}})
+    if (existing.data.length > 0) throw new Error("User already exists");
+
+    const response = await api.post("/users" , {email , password})
+    return response.data 
+  } catch (error) {
+    console.error("Error registering user:", error);
+    throw error;
+  }
+} 
