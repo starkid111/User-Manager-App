@@ -47,7 +47,9 @@ const Register: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium mb-2 text-white">Email</label>
+            <label className="block text-sm font-medium mb-2 text-white">
+              Email
+            </label>
             <input
               type="email"
               value={email}
@@ -59,7 +61,9 @@ const Register: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2 text-white">Password</label>
+            <label className="block text-sm font-medium mb-2 text-white">
+              Password
+            </label>
             <input
               type="password"
               value={password}
