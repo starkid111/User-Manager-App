@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
   const { register } = useAuth();
-
+const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +21,7 @@ const Register: React.FC = () => {
     try {
       await register(email, password);
       setSuccess("Account created successfully!");
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err: any) {
       setError(err.message || "Registration failed");
     } finally {
