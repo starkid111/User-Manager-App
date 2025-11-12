@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,6 +18,7 @@ const Login: React.FC = () => {
 
     try {
       await login(email, password);
+        navigate("/");
     } catch (err: any) {
       setError(err.message || "Failed to log in");
     } finally {
