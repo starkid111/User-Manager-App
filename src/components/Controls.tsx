@@ -34,7 +34,7 @@ const Controls = ({
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
         <div>
           <h1 className="text-3xl xl:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">
-            ⚙️ Gadget Manager
+            ⚙️ GadgetHub Manager
           </h1>
           <p className="text-sm text-gray-400 mt-1">
             Manage your gadgets — search, filter, and sort easily.

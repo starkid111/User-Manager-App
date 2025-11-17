@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Sidebar (Desktop) */}
       <aside className="hidden md:flex flex-col w-64 bg-white/5 border-r border-white/10 p-5 space-y-6">
-        <h2 className="text-2xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">⚙️ GadgetApp</h2>
+        <h2 className="text-2xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">⚙️ GadgetHub</h2>
         <nav className="flex flex-col space-y-3">
           {navLinks.map((link) => (
             <Link
@@ -32,7 +32,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
       {/* Mobile Navbar */}
       <header className="md:hidden flex justify-between items-center px-5 py-4 bg-white/10 border-b border-white/10">
-        <h2 className="text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">⚙️ GadgetApp</h2>
+        <h2 className="text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">⚙️ GadgetHub</h2>
         <button onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
